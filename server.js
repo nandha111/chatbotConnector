@@ -73,8 +73,8 @@ app.post('/fulfillment', function(req, res) {
         case 'vc.showaccounts':
             resultVal = vcShowAccounts(req.body.result.parameters, res);
             break;
-        case 'vc.AccountBalance':
-            resultVal = vcCreditCardBalance(req.body.result.parameters, res);
+        case 'vc.accountBalance':
+            resultVal = vcAccountBalance(req.body.result.parameters, res);
             break;
         case 'vc.showVcCreditCard':
             resultVal = vcShowVcCreditCard(req.body.result.parameters, res);
@@ -146,7 +146,7 @@ function vcShowAccounts(data, res) {
     return result;
 }
 
-function AccountBalance(data, res) {
+function vcAccountBalance(data, res) {
     var datareturnaccount = {
       "userId": "abhijeet",
       "accountId": "NL91ABNA0417164300",
