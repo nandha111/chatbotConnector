@@ -112,7 +112,9 @@ function vcShowAccounts(data, res) {
         "contextOut": [],
         "source": "Portfolio Service"
     };
+       res.send(JSON.stringify(result));
     return result;
+ 
 }
 
 function processHistoryRequest(data, res) {
