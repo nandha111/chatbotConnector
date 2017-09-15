@@ -73,6 +73,15 @@ app.post('/fulfillment', function(req, res) {
         case 'vc.showaccounts':
             resultVal = vcShowAccounts(req.body.result.parameters, res);
             break;
+        case 'vc.creditCardBalance':
+            resultVal = vcCreditCardBalance(req.body.result.parameters, res);
+            break;
+        case 'vc.showVcCreditCard':
+            resultVal = vcShowVcCreditCard(req.body.result.parameters, res);
+            break;
+        case 'vc.showCreditCards':
+            resultVal = vcShowCreditCards(req.body.result.parameters, res);
+            break;
         case 'history':
             resultVal = processHistoryRequest(req.body.result.parameters, res);
             break;
@@ -105,14 +114,142 @@ function processPortfolioRequest(data, res) {
 }
 
 function vcShowAccounts(data, res) {
-    var result = {
-        "speech": "vs is responded",
-        "displayText": "vs is responded",
-        "data": JSON.stringify(data),
-        "contextOut": [],
-        "source": "Portfolio Service"
+
+    var datareturn = {
+      "userId": "abhijeet",
+      "accounts": [
+        {
+          "id": "NL91ABNA0417164300",
+          "type": "Savings",
+          "accountNumber": "0417164300",
+          "acccountHolder": "Abhijeet Mane",
+          "iban": "NL91ABNA0417164300",
+          "currency": "EUR",
+          "accountBalance": 7843.28,
+          "creditcardCount": 1,
+          "creditcardsTotalBalance": -496.4,
+          "creditcardsTotalCurrency": "EUR"
+        }
+      ],
+        'speechText': 'please find the accounts'
     };
-       res.send(JSON.stringify(result));
+    var result = {
+        "speech": JSON.stringify(datareturn),
+        "displayText": "Please find Details of your portfolios",
+        "data": JSON.stringify(datareturn),
+        "contextOut": [],
+        "source": "Portfolio History Service"
+    };
+    console.log(result);
+
+    res.send(JSON.stringify(result));
+    return result;
+}
+
+function vcCreditCardBalance(data, res) {
+    var datareturn = {
+  "userId": "abhijeet",
+  "accountId": "NL91ABNA0417164300",
+  "creditcards": [
+    {
+      "creditcardId": "675654",
+      "cardNumber": "567191XXXXXX3686",
+      "cardHolder": "Abhijeet Mane",
+      "cardType": "VISA CLASSIC international",
+      "cardBalance": -496.4,
+      "cardBalanceDate": "16/09/2017",
+      "cardCurrency": "EUR"
+    }
+  ],
+        'speechText': 'please find the accounts'
+};
+    var result = {
+        "speech": JSON.stringify(datareturn),
+        "displayText": "Please find Details of your portfolios",
+        "data": JSON.stringify(datareturn),
+        "contextOut": [],
+        "source": "Portfolio History Service"
+    };
+    console.log(result);
+
+    res.send(JSON.stringify(result));
+    return result;
+ 
+}
+
+function vcShowVcCreditCard(data, res) {
+    var datareturn = {
+  "userId": "abhijeet",
+  "accountId": "NL91ABNA0417164300",
+  "creditcardId": "675654",
+  "virtualCards": [
+    {
+      "id": "875655",
+      "cardNumber": "2937816292739723",
+      "cardType": "VISA CLASSIC international",
+      "cardInitialBalance": 30,
+      "cardRemainingBalance": 30,
+      "cardBalanceDate": "16/09/2017",
+      "cardCurrency": "EUR",
+      "cardValidFrom": "16/09/2017",
+      "cardValidTill": "31/10/2017",
+      "cardStatus": "Active"
+    }
+  ],
+        'speechText': 'please find the accounts'
+};
+    var result = {
+        "speech": JSON.stringify(datareturn),
+        "displayText": "Please find Details of your portfolios",
+        "data": JSON.stringify(datareturn),
+        "contextOut": [],
+        "source": "Portfolio History Service"
+    };
+    console.log(result);
+
+    res.send(JSON.stringify(result));
+    return result;
+ 
+}
+
+function vcShowCreditCards(data, res) {
+    var datareturn = {
+  "userId": "abhijeet",
+  "accountId": "NL91ABNA0417164300",
+  "creditcards": [{
+      "creditcardId": "675654",
+      "cardNumber": "567191XXXXXX3686",
+      "cardHolder": "Abhijeet Mane",
+      "cardType": "VISA CLASSIC international",
+      "cardBalance": -496.4,
+      "cardBalanceDate": "16/09/2017",
+      "cardCurrency": "EUR",
+      "virtualCards": [{
+          "id": "875655",
+          "cardNumber": "2937816292739723",
+          "cardType": "VISA CLASSIC international",
+          "cardInitialBalance": 30,
+          "cardRemainingBalance": 30,
+          "cardBalanceDate": "16/09/2017",
+          "cardCurrency": "EUR",
+          "cardValidFrom": "16/09/2017",
+          "cardValidTill": "31/10/2017",
+          "cardStatus": "Active"
+        }]
+    }
+  ],
+        'speechText': 'please find the accounts'
+}
+    var result = {
+        "speech": JSON.stringify(datareturn),
+        "displayText": "Please find Details of your portfolios",
+        "data": JSON.stringify(datareturn),
+        "contextOut": [],
+        "source": "Portfolio History Service"
+    };
+    console.log(result);
+
+    res.send(JSON.stringify(result));
     return result;
  
 }
