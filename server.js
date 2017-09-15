@@ -182,7 +182,7 @@ function AccountBalance(data, res) {
     };
 
     if(data.number === null || data.number === undefined || data.number === "") {
-        var datareturn = Please enter account number you want to retrieve balance;
+        var datareturn = "Please enter account number you want to retrieve balance";
     }
     else if(data.number === "NL91ABNA0417164300") {
         var datareturn = datareturnaccount;
