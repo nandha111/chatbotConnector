@@ -199,7 +199,7 @@ function vcShowVcCreditCard(data, res) {
         'speechText': 'please find the accounts'
 };
 
-    console.log(data.parameters.number);
+    console.log(data);
     var result = {
         "speech": JSON.stringify(datareturn),
         "displayText": "Please find Details of your portfolios",
