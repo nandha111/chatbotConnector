@@ -70,6 +70,9 @@ app.post('/fulfillment', function(req, res) {
         case 'portfolio':
             resultVal = processPortfolioRequest(req.body.result.parameters, res);
             break;
+        case 'vc.showaccounts':
+            resultVal = vcShowAccounts(req.body.result.parameters, res);
+            break;
         case 'history':
             resultVal = processHistoryRequest(req.body.result.parameters, res);
             break;
@@ -94,6 +97,17 @@ function processPortfolioRequest(data, res) {
     var result = {
         "speech": "Portfolio is returned from services",
         "displayText": "Portfolio is returned from services",
+        "data": JSON.stringify(data),
+        "contextOut": [],
+        "source": "Portfolio Service"
+    };
+    return result;
+}
+
+function vcShowAccounts(data, res) {
+    var result = {
+        "speech": "vs is responded",
+        "displayText": "vs is responded",
         "data": JSON.stringify(data),
         "contextOut": [],
         "source": "Portfolio Service"
