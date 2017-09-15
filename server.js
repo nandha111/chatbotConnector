@@ -201,9 +201,12 @@ function vcShowVcCreditCard(data, res) {
     
     console.log("input data");
     console.log(data.number);
+    if(data.number === null || data.number === undefined || data.number === "") {
+        datareturn ="Please enter amount";
+    }
     var result = {
         "speech": JSON.stringify(datareturn),
-        "displayText": "Please find Details of your portfolios",
+        "displayText": JSON.stringify(datareturn),
         "data": JSON.stringify(datareturn),
         "contextOut": [],
         "source": "Portfolio History Service"
