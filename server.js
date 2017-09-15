@@ -73,7 +73,7 @@ app.post('/fulfillment', function(req, res) {
         case 'vc.showaccounts':
             resultVal = vcShowAccounts(req.body.result.parameters, res);
             break;
-        case 'vc.creditCardBalance':
+        case 'vc.AccountBalance':
             resultVal = vcCreditCardBalance(req.body.result.parameters, res);
             break;
         case 'vc.showVcCreditCard':
@@ -146,23 +146,51 @@ function vcShowAccounts(data, res) {
     return result;
 }
 
-function vcCreditCardBalance(data, res) {
-    var datareturn = {
-  "userId": "abhijeet",
-  "accountId": "NL91ABNA0417164300",
-  "creditcards": [
-    {
-      "creditcardId": "675654",
-      "cardNumber": "567191XXXXXX3686",
-      "cardHolder": "Abhijeet Mane",
-      "cardType": "VISA CLASSIC international",
-      "cardBalance": -496.4,
-      "cardBalanceDate": "16/09/2017",
-      "cardCurrency": "EUR"
+function AccountBalance(data, res) {
+    var datareturnaccount = {
+      "userId": "abhijeet",
+      "accountId": "NL91ABNA0417164300",
+      "creditcards": [
+        {
+          "creditcardId": "675654",
+          "cardNumber": "567191XXXXXX3686",
+          "cardHolder": "Abhijeet Mane",
+          "cardType": "VISA CLASSIC international",
+          "cardBalance": -496.4,
+          "cardBalanceDate": "16/09/2017",
+          "cardCurrency": "EUR"
+        }
+      ],
+     'speechText': 'please find the accounts'
+    };
+
+    var datareturnCC = {
+      "userId": "abhijeet",
+      "accountId": "NL91ABNA0417164300",
+      "creditcards": [
+        {
+          "creditcardId": "675654",
+          "cardNumber": "567191XXXXXX3686",
+          "cardHolder": "Abhijeet Mane",
+          "cardType": "VISA CLASSIC international",
+          "cardBalance": -496.4,
+          "cardBalanceDate": "16/09/2017",
+          "cardCurrency": "EUR"
+        }
+      ],
+     'speechText': 'please find the accounts'
+    };
+
+    if(data.number === null || data.number === undefined || data.number === "") {
+        var datareturn = Please enter account number you want to retrieve balance;
     }
-  ],
-        'speechText': 'please find the accounts'
-};
+    else if(data.number === "NL91ABNA0417164300") {
+        var datareturn = datareturnaccount;
+    }
+    else {
+        var datareturn = datareturnCC;
+    }
+
     var result = {
         "speech": JSON.stringify(datareturn),
         "displayText": "Please find Details of your portfolios",
@@ -202,7 +230,7 @@ function vcShowVcCreditCard(data, res) {
     console.log("input data");
     console.log(data.number);
     if(data.number === null || data.number === undefined || data.number === "") {
-        datareturn ="Please enter amount";
+        datareturn = "Please enter amount";
     }
     var result = {
         "speech": JSON.stringify(datareturn),
