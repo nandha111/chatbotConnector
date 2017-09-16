@@ -182,7 +182,9 @@ function vcAccountBalance(data, res) {
     };
 
     if(data.number === null || data.number === undefined || data.number === "") {
-        var datareturn = "Please enter account number or credit card number you want to retrieve balance";
+        var datareturn = {
+            "accountKey": "Please enter account number or credit card number you want to retrieve balance"
+        };
     }
     else if(data.number === "NL91ABNA0417164300") {
         var datareturn = datareturnaccount;
@@ -275,13 +277,14 @@ function vcShowCreditCards(data, res) {
         'speechText': 'please find the accounts'
 }
 
-    if(data !== null && data.prompt === "yes") {
-        datareturn = "Please wait... Credit card validation happening";
-    }
 
     if(counter <= 0) {
         var datareturn = "You dont have any virtual credit cards. Would you like to create one?"
         counter ++;
+    }
+
+    if(data !== null && data.prompt === "i want to create") {
+        datareturn = "Please wait... Credit card validation happening";
     }
 
     var result = {
