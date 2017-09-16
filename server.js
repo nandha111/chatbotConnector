@@ -277,7 +277,7 @@ function vcShowCreditCards(data, res) {
   ],
         'speechText': 'please find the accounts'
 }
-
+    console.log("coming inside");
     if(data !== null && data.prompt === "yes") {
         datareturn = "Please wait... Credit card validation happening";
     }
