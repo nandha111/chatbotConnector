@@ -11,7 +11,7 @@ var firebase = require('firebase'),
     //require the path nodejs module
     path = require("path"),
 
-    counter =0;
+    counter =0,
 
     config = {
         apiKey: "AIzaSyD6jFXalt-AXrK0JsiHHp9MuxumTSXUZ_M",
