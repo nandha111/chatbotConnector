@@ -11,7 +11,7 @@ var firebase = require('firebase'),
     //require the path nodejs module
     path = require("path"),
 
-
+    counter =0,
     config = {
         apiKey: "AIzaSyD6jFXalt-AXrK0JsiHHp9MuxumTSXUZ_M",
         authDomain: "awesome-flash-99616.firebaseapp.com",
@@ -182,7 +182,7 @@ function vcAccountBalance(data, res) {
     };
 
     if(data.number === null || data.number === undefined || data.number === "") {
-        var datareturn = "Please enter account number you want to retrieve balance";
+        var datareturn = "Please enter account number or credit card number you want to retrieve balance";
     }
     else if(data.number === "NL91ABNA0417164300") {
         var datareturn = datareturnaccount;
@@ -274,6 +274,16 @@ function vcShowCreditCards(data, res) {
   ],
         'speechText': 'please find the accounts'
 }
+
+    if(data !== null && data.prompt === "yes") {
+        datareturn = "Please wait... Credit card validation happening";
+    }
+
+    if(counter <= 0) {
+        var datareturn = "You dont have any virtual credit cards. Would you like to create one?"
+        counter ++;
+    }
+
     var result = {
         "speech": JSON.stringify(datareturn),
         "displayText": "Please find Details of your portfolios",
