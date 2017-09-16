@@ -294,7 +294,8 @@ function vcShowCreditCards(data, res) {
         "contextOut": [],
         "source": "Portfolio History Service"
     };
-    console.log(result);
+    console.log("did it create");
+    console.log(data.prompt);
 
     res.send(JSON.stringify(result));
     return result;
